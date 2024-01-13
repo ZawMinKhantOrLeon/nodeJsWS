@@ -1,16 +1,13 @@
 let router = require("express").Router();
+let userController = require("../controllers/users");
 
-router.get("/",(req,res)=>{
-      res.json("This is users route");
-})
+router.get("/",userController.all);
 
-router.post("/add",(req,res)=>{
-    res.json("This is user add route");
-})
+router.post("/add",userController.add);
 
 router.route("/:id")
-      .get((req,res)=> res.json("This is get user by id route"))
-      .patch((req,res)=>res.json("This is update route"))
-      .delete((req,res) => res.json("This is delete route"));
+      .get(userController.get)
+      .patch(userController.update)
+      .delete(userController.drop);
 
 module.exports = router;
