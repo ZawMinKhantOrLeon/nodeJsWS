@@ -1,3 +1,13 @@
+require("dotenv").config();
+
+const mongoose =require("mongoose");
+mongoose.connect(`mongodb://127.0.0.1:27017/${process.env.DB}`)
+.then(()=>{console.log("Mongoose server has started")
+})
+.catch((err)=>{
+    console.error(err)
+})
+
 const express = require("express");
 const server = express();
 
@@ -11,4 +21,4 @@ server.use("/users/",userRouter);
 server.use("/posts/",postRouter);
 
 
-server.listen(6000,console.log("Server is listening at port : 6000 "));
+server.listen(process.env.PORT,console.log("Server is listening at port : 6000 "));
